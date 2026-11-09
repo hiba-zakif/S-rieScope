@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body class="bg-[#080808] m-8 ">
+    <header>
+        <span class="bg-[#EEEEEE] p-1 rounded-lg"><i class="fa-solid fa-video"></i></span>
+        <span class="text-[#FAFAFA]">Sériescope</span>
+    </header>
+ 
+    <main class="text-[#FAFAFA] my-8">
+        <h1 class="text-xl font-bold">Explore les séries TV</h1>
+        <p class="text-[#BABABA] my-2">Retrouve tes séries préférées et enrichis le catalogue.</p>
+        <section class="my-8">
+            <form action="" class="bg-[#191919] border-1 border-[#393939] rounded-lg p-5 ">
+                <h2 class="text-xl font-bold">Ajouter une série</h2>
+                <p class="text-[#BABABA]">Les champs marqués d’un * sont obligatoires.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-5">
+                    <div class="grid grid-cols-1 gap-2 ">
+                        <label for="" class="font-semibold">Nom de la série *</label>
+                        <input type="text" placeholder="Ex. The Bear" class="border-1 border-[#393939] rounded-sm p-1">
+                    </div>
+                    <div class="grid grid-cols-1 gap-2 ">
+                        <label for="" class="font-semibold">Genre(s) * <span class="text-[#BABABA] font-normal text-sm">séparés par des virgules</span></label>
+                        <input type="text" placeholder="Ex. Drame, Comédie" class="border-1 border-[#393939]  rounded-sm p-1">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-2 my-5">
+                    <label for="" class="font-semibold">Description <span>facultative</span></label>
+                    <textarea name="" id="" placeholder="Résume la série en quelques mots…" class="border-1 border-[#393939]  rounded-sm p-1"></textarea>
+                </div>
+                <button class="bg-[#EEEEEE] text-[#101010] p-2 rounded-lg">＋ Ajouter la série</button>
+            </form>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold ">Catalogue des séries</h2>
+            <p class="text-[#BABABA] my-2">Recherche par nom ou explore un genre.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-end bg-[#191919] border-1 border-[#393939] rounded-xl p-3">
+                <div class="grid grid-cols-1">
+                    <label for="">Recherche</label>
+                    <input type="text" placeholder="Ex. Breaking Bad" class="p-2 border-1 border-[#393939] rounded-lg">
+                </div>
+                <div class="grid grid-cols-1">
+                    <label for="">Genre</label>
+                    <select name="" id="" class="p-2 border-1 border-[#393939] rounded-lg">
+                        <option value="">Tous les genres</option>
+                    </select>
+                </div>
+                <butto class="p-2  border-1 border-[#393939] rounded-lg  ">↻ Réinitialiser</button>
+            </div>
+
+            <p class="text-sm text-[#BABABA] my-4">6 séries affichées</p>
+
+            <div class="listeMovies grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <article class="border-1 border-[#393939] rounded-2xl w-full">
+                    <img src="./assets/image.png" alt="" class="w-full rounded-t-2xl ">
+                    <div class="p-5">
+                        <h4 class="my-2">Breaking Bad</h4>
+                        <div class="my-2"><span class="bg-[#292929] rounded-xl p-1">Drame</span> <span class="bg-[#292929] rounded-xl p-1">Policier</span></div>
+                        <p class="text-[#BABABA]">Un professeur de chimie mène une double vie.</p>
+                    </div>
+
+                </article>
+
+                <article class="border-1 border-[#393939] rounded-2xl w-full">
+                    <img src="./assets/image.png" alt="" class="w-full rounded-t-2xl ">
+                    <div class="p-5">
+                        <h4 class="my-2">Breaking Bad</h4>
+                        <div class="my-2"><span class="bg-[#292929] rounded-xl p-1">Drame</span> <span class="bg-[#292929] rounded-xl p-1">Policier</span></div>
+                        <p class="text-[#BABABA]">Un professeur de chimie mène une double vie.</p>
+                    </div>
+
+                </article>
+
+                <article class="border-1 border-[#393939] rounded-2xl w-full">
+                    <img src="./assets/image.png" alt="" class="w-full rounded-t-2xl ">
+                    <div class="p-5">
+                        <h4 class="my-2">Breaking Bad</h4>
+                        <div class="my-2"><span class="bg-[#292929] rounded-xl p-1">Drame</span> <span class="bg-[#292929] rounded-xl p-1">Policier</span></div>
+                        <p class="text-[#BABABA]">Un professeur de chimie mène une double vie.</p>
+                    </div>
+
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
