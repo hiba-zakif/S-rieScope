@@ -11,13 +11,20 @@ async function fetcherData (){
     const response = await fetch('https://api.tvmaze.com/shows?page=0');
     const data = await response.json();
 
-    afficherMovies(data)
+    afficherMovies(data);
+
+    ajouterMovie.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const newMovie = ajouter();
+        data.unshift(newMovie);   
+        afficherMovies(data);
+    })
     
 }
 
 
 function afficherMovies (data){
-    
+    listeMovies.textContent = "";
    data.forEach(element => {
         const article = document.createElement("article");
         listeMovies.append(article);
@@ -27,7 +34,7 @@ function afficherMovies (data){
         const img = document.createElement("img");
         article.append(img);
         img.classList.add("w-full","rounded-t-2xl","max-h-80");
-        img.setAttribute("src", element.image.original);
+        img.setAttribute("src", element.image == undefined ? "./assets/image.png" : element.image.original);
         img.setAttribute("alt", `photo du film ${element.name}`);
 
         const div = document.createElement("div");
@@ -61,6 +68,29 @@ function afficherMovies (data){
 }
 
 
+function ajouter(){
+    
+    if(nomSerie.value.trim() == ""){
+        erreurNomSerie.textContent = "le champ nom est vide";
+        return
+    }else if(genreSerie.value.trim() == ""){
+        erreurGenreSerie.textContent = "le champ genre est vide";
+        return
+    }else if(descSerie == ""){
+        erreurDescSerie.textContent = "le champ description est vide";
+        return
+    }
+
+
+    const newMovie = {
+        name : nomSerie.value ,
+        summary : descSerie.value ,
+        genres : genreSerie.value.split(",")
+    }
+    return newMovie;
+    
+    
+}
 
 
 fetcherData();
