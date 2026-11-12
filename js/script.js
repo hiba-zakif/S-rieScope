@@ -12,21 +12,32 @@ const reset = document.getElementById("reset-button");
 const form = document.getElementById("filtrerRechercher");
 
 async function fetcherData (){
-    const response = await fetch('https://api.tvmaze.com/shows?page=0');
-    const data = await response.json();
+    
 
-    afficherMovies(data);
-    optionsGenres(data);
+    if(!localStorage.getItem("movies")){
+        const response = await fetch('https://api.tvmaze.com/shows?page=0');
+        const data = await response.json();
+        localStorage.setItem("movies",JSON.stringify(data));
+    }
+    
+    const movies = JSON.parse(localStorage.getItem("movies"));
+
+    console.log(movies);
+    
+    afficherMovies(movies);
+    optionsGenres(movies);
 
     ajouterMovie.addEventListener("submit", (e)=>{
         e.preventDefault();
         const newMovie = ajouter();
-        data.unshift(newMovie);   
-        afficherMovies(data);
+        movies.unshift(newMovie); 
+        localStorage.setItem("movies",JSON.stringify(movies));  
+        afficherMovies(movies);
+        ajouterMovie.reset();
     })
 
     chercher.addEventListener("input",()=>{
-        let dataChercher = data;
+        let dataChercher = movies;
         if(filtrer.value){
             dataChercher = filtrerMovie(dataChercher)
         }
@@ -35,7 +46,7 @@ async function fetcherData (){
     })
 
     filtrer.addEventListener("input",()=>{
-        let dataChercher = data;
+        let dataChercher = movies;
         if(filtrer.value){
             dataChercher = chercherMovie(dataChercher)
         }
@@ -46,7 +57,7 @@ async function fetcherData (){
     reset.addEventListener("click",(e)=>{
         e.preventDefault();
         form.reset();
-        afficherMovies(data);
+        afficherMovies(movies);
     })
     
 }
