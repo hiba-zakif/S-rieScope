@@ -47,19 +47,19 @@
             <h2 class="text-xl font-bold ">Catalogue des séries</h2>
             <p class="text-[#BABABA] my-2">Recherche par nom ou explore un genre.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-end bg-[#191919] border-1 border-[#393939] rounded-xl p-3">
+            <form id="filtrerRechercher" class="grid grid-cols-1 md:grid-cols-3 gap-2 items-end bg-[#191919] border-1 border-[#393939] rounded-xl p-3">
                 <div class="grid grid-cols-1">
                     <label for="">Recherche</label>
-                    <input type="text" placeholder="Ex. Breaking Bad" class="p-2 border-1 border-[#393939] rounded-lg">
+                    <input id="chercher" type="text" placeholder="Ex. Breaking Bad" class="p-2 border-1 border-[#393939] rounded-lg">
                 </div>
                 <div class="grid grid-cols-1">
                     <label for="">Genre</label>
-                    <select name="" id="" class="p-2 border-1 border-[#393939] rounded-lg">
+                    <select name="" id="filtrer" class="p-2 bg-[#191919] border-1 border-[#393939] rounded-lg">
                         <option value="">Tous les genres</option>
                     </select>
                 </div>
-                <butto class="p-2  border-1 border-[#393939] rounded-lg  ">↻ Réinitialiser</button>
-            </div>
+                <button type="reset" id="reset-button" class="p-2  border-1 border-[#393939] rounded-lg  ">↻ Réinitialiser</button>
+            </form>
 
             <p class="text-sm text-[#BABABA] my-4">6 séries affichées</p>
 

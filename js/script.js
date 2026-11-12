@@ -6,17 +6,46 @@ const erreurGenreSerie = document.getElementById("erreurGenreSerie");
 const erreurDescSerie = document.getElementById("erreurDescSerie");
 const erreurNomSerie = document.getElementById("erreurNomSerie");
 const ajouterMovie = document.getElementById("ajouterMovie");
+const chercher = document.getElementById("chercher");
+const filtrer = document.getElementById("filtrer");
+const reset = document.getElementById("reset-button");
+const form = document.getElementById("filtrerRechercher");
 
 async function fetcherData (){
     const response = await fetch('https://api.tvmaze.com/shows?page=0');
     const data = await response.json();
 
     afficherMovies(data);
+    optionsGenres(data);
 
     ajouterMovie.addEventListener("submit", (e)=>{
         e.preventDefault();
         const newMovie = ajouter();
         data.unshift(newMovie);   
+        afficherMovies(data);
+    })
+
+    chercher.addEventListener("input",()=>{
+        let dataChercher = data;
+        if(filtrer.value){
+            dataChercher = filtrerMovie(dataChercher)
+        }
+        dataChercher = chercherMovie(dataChercher)
+        afficherMovies(dataChercher);
+    })
+
+    filtrer.addEventListener("input",()=>{
+        let dataChercher = data;
+        if(filtrer.value){
+            dataChercher = chercherMovie(dataChercher)
+        }
+        dataChercher = filtrerMovie(dataChercher)
+        afficherMovies(dataChercher);
+    })
+
+    reset.addEventListener("click",(e)=>{
+        e.preventDefault();
+        form.reset();
         afficherMovies(data);
     })
     
@@ -92,5 +121,41 @@ function ajouter(){
     
 }
 
+function chercherMovie(data){
+    const moviescherché = data.filter((e)=>e.name.toLowerCase().includes(chercher.value.trim().toLowerCase()));
+    return moviescherché;
+}
+
+function filtrerMovie(data){
+    if(filtrer.value == ""){
+        return data;
+    }
+    const moviesfiltré = [];
+    data.forEach((movie)=>{
+          const t = movie.genres.filter((e)=>e == filtrer.value) ;
+          if(t.length>0){
+            moviesfiltré.push(movie);
+          }
+    } );
+    return moviesfiltré;
+}
+
+function optionsGenres(data){
+    let options = [];
+    data.forEach(movie=>{
+        movie.genres.forEach((genre)=>{
+            if(!options.includes(genre)){
+                options.push(genre);
+            }
+        })
+    })
+    
+    options.forEach(option=>{
+        const genre = document.createElement("option");
+        filtrer.append(genre);
+        genre.textContent = option;
+        genre.value = option;     
+    })
+}
 
 fetcherData();
