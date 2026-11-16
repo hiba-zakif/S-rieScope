@@ -99,8 +99,15 @@ function afficherMovies (data){
 
         const p = document.createElement("p");
         div.append(p);
-        p.classList.add("text-[#BABABA]");
+        p.classList.add("text-[#BABABA]","mb-3");
         p.innerHTML = `${element.summary.slice(0,180)} ...`;
+
+        const detail = document.createElement("a");
+        div.append(detail);
+        detail.textContent = "voir detail";
+        detail.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-2xl");
+        detail.setAttribute("href",`./detail.html?id=`+element.id);
+        
 
         
         
