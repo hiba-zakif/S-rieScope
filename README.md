@@ -297,7 +297,7 @@ Le board Jira utilise quatre statuts :
 - **Terminé :** tâches finalisées.
 
 ### Tâches principales
-[la liste des taches](./screenshots/jira.png)
+[la liste des taches](./assets/screenshots/jira.PNG)
 
 ---
 
@@ -370,11 +370,11 @@ Aucune installation de backend ou de dépendance JavaScript n'est nécessaire po
 
 ### 🎬 formulaire
 
-![Catalogue SérieScope](screenshots/formulaire.png)
+![Catalogue SérieScope](screenshots/formulaire.PNG)
 
 ### 🔍 l'affichage
 
-![Recherche et filtres](screenshots/affichage.png)
+![Recherche et filtres](screenshots/affichage.PNG)
 
 
 ---
