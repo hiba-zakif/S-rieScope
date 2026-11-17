@@ -297,7 +297,7 @@ Le board Jira utilise quatre statuts :
 - **Terminé :** tâches finalisées.
 
 ### Tâches principales
-[la liste des taches](./assets/jira.PNG)
+![la liste des taches](./assets/jira.PNG)
 
 ---
 
