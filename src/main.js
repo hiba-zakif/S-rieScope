@@ -1,5 +1,6 @@
 import {update, getAll , create , remove , getById} from "./services/serieService.js";
 import {cards} from "./ui/cards.js";
+import {createObjetMovie} from "./ui/form.js";
 
 
 const listeMovies = document.querySelector(".listeMovies");
@@ -17,9 +18,13 @@ const form = document.getElementById("filtrerRechercher");
 
 
 
+
+
 async function displayMovies(){
     const movies =  await getAll();
-    console.log(movies);
+    // console.log(movies);
+    listeMovies.textContent = "";
+    
     
     movies.forEach(element => {
         cards(element,listeMovies);
@@ -28,3 +33,17 @@ async function displayMovies(){
 }
 displayMovies();
 
+ajouterMovie.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const newMovie = createObjetMovie();
+        if(!newMovie){
+            console.log("undefined");
+            
+        }
+        cards(newMovie);
+        create(newMovie);
+        
+    })
+
+   
+    

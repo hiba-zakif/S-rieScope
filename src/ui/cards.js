@@ -1,11 +1,12 @@
+const listeMovies = document.querySelector(".listeMovies");
 
 
 
-
-export function cards (element , listeMovies){
+export function cards (element){
         const article = document.createElement("article");
         listeMovies.append(article);
 
+        
         article.classList.add("border-1","border-[#393939]","rounded-2xl","w-full");
 
         const img = document.createElement("img");
