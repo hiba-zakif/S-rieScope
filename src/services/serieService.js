@@ -4,7 +4,7 @@ import {instance} from "./api.js";
  export async function getAll (){
     try{
         const response = await instance.get('/series');
-        return console.log (response.data)
+        return response.data
     }catch(error){
         console.log(error);
     }
