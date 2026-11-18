@@ -12,6 +12,9 @@ const chercher = document.getElementById("chercher");
 const filtrer = document.getElementById("filtrer");
 const reset = document.getElementById("reset-button");
 const form = document.getElementById("filtrerRechercher");
+const modif = document.getElementById("Modif");
+const annulerModif = document.getElementById("annulerModif");
+const submit = document.getElementById("submit");
 
 
 function validation(){
@@ -42,4 +45,15 @@ export function createObjetMovie(){
         "language" : langueSerie.value
     }
     return newMovie; 
+}
+
+export function édition(movie){
+    nomSerie.value = movie.name;
+    genreSerie.value = movie.genres;
+    langueSerie.value = movie.language;
+    descSerie.value = movie.summary;
+
+    submit.classList.toggle("hidden");
+    annulerModif.classList.toggle("hidden");
+    modif.classList.toggle("hidden");
 }
