@@ -25,7 +25,6 @@ async function displayMovies(){
     // console.log(movies);
     listeMovies.textContent = "";
     
-    
     movies.forEach(element => {
         cards(element,listeMovies);
     });

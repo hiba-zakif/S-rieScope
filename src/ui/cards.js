@@ -1,3 +1,4 @@
+import {update, remove} from "../services/serieService.js";
 const listeMovies = document.querySelector(".listeMovies");
 
 
@@ -12,7 +13,7 @@ export function cards (element){
         const img = document.createElement("img");
         article.append(img);
         img.classList.add("w-full","rounded-t-2xl","max-h-80");
-        img.setAttribute("src", element.image == undefined ? "./assets/image.png" : element.image.original);
+        // img.setAttribute("src", element.image == undefined ? "./assets/image.png" : element.image.original)
         img.setAttribute("alt", `photo du film ${element.name}`);
 
         const div = document.createElement("div");
@@ -40,10 +41,27 @@ export function cards (element){
         p.classList.add("text-[#BABABA]","mb-3");
         p.innerHTML = `${element.summary.slice(0,150)} ...`;
 
+        const btns = document.createElement("div");
+        div.append(btns);
+        btns.classList.add("grid","grid-cols-3","gap-4","justify-items-stretch")
+
         const detail = document.createElement("a");
-        div.append(detail);
+        btns.append(detail);
         detail.textContent = "voir detail";
-        detail.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-2xl");
+        detail.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-xl","flex" , "justify-center");
         detail.setAttribute("href",`./detail.html?id=`+element.id); 
 
+        const supprimer = document.createElement("button");
+        btns.append(supprimer);
+        supprimer.textContent = "supprimer";
+        supprimer.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-xl","flex" , "justify-center");
+
+        const modifier = document.createElement("button");
+        btns.append(modifier);
+        modifier.textContent = "modifier";
+        modifier.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-xl","flex" , "justify-center");
+        supprimer.addEventListener("click",()=>{
+            remove(element.id);
+        })
 }
+

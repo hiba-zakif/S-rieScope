@@ -42,7 +42,7 @@ export async function getById(id){
  export async function remove (id){
     try{
         const response = await instance.delete(`/series/${id}`);
-        return console.log (response.data)
+        return response.data
     }catch(error){
         console.log(error);
     }
