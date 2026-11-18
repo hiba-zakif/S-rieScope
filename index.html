@@ -34,10 +34,18 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-2 my-5">
-                    <label for="" class="font-semibold">Description <span>facultative</span></label>
-                    <textarea name="" id="descSerie" placeholder="Résume la série en quelques mots…" class="border-1 border-[#393939]  rounded-sm p-1"></textarea>
-                    <p id="erreurDescSerie" class="text-[#FF0E0E]"></p>
+                <div class="grid grid-cols-2 gap-2 my-5">
+                    <div class="grid grid-cols-1 gap-2 ">
+                        <label for="" class="font-semibold">Langue *</label>
+                        <input id="langueSerie" type="text" placeholder="Ex. Arabe , Francais , anglais" class="border-1 border-[#393939]  rounded-sm p-1">
+                        <p id="erreurLangueSerie" class="text-[#FF0E0E]"></p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-2 ">
+                        <label for="" class="font-semibold">Description <span>facultative</span></label>
+                        <textarea name="" id="descSerie" placeholder="Résume la série en quelques mots…" class="border-1 border-[#393939]  rounded-sm p-1"></textarea>
+                        <p id="erreurDescSerie" class="text-[#FF0E0E]"></p>
+                    </div>
+                    
                 </div>
                 <button type="submit" class="bg-[#EEEEEE] text-[#101010] p-2 rounded-lg">＋ Ajouter la série</button>
             </form>
@@ -67,6 +75,8 @@
             </div>
         </section>
     </main>
-<script src="./js/script.js"></script>
+<script src="https://unpkg.com/axios@1.20.0/dist/axios.min.js"></script>
+<script type="module" src="./src/main.js"></script>
+<!-- <script src="./js/script.js"></script> -->
 </body>
 </html>
