@@ -1,3 +1,5 @@
+import { getById } from "../services/serieService.js";
+
 const listeMovies = document.querySelector(".listeMovies");
 const nomSerie = document.getElementById("nomSerie");
 const genreSerie = document.getElementById("genreSerie");
@@ -12,6 +14,9 @@ const chercher = document.getElementById("chercher");
 const filtrer = document.getElementById("filtrer");
 const reset = document.getElementById("reset-button");
 const form = document.getElementById("filtrerRechercher");
+const modif = document.getElementById("Modif");
+const annulerModif = document.getElementById("annulerModif");
+const submit = document.getElementById("submit");
 
 
 function validation(){
@@ -42,4 +47,16 @@ export function createObjetMovie(){
         "language" : langueSerie.value
     }
     return newMovie; 
+}
+
+export async function édition(id){
+    const serie = await getById(id);
+    nomSerie.value = serie.name;
+    genreSerie.value = serie.genres;
+    langueSerie.value = serie.language;
+    descSerie.value = serie.summary;    
+
+    submit.classList.toggle("hidden");
+    annulerModif.classList.toggle("hidden");
+    modif.classList.toggle("hidden");
 }

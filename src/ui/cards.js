@@ -1,9 +1,17 @@
 import {update, remove} from "../services/serieService.js";
+import{édition} from "./form.js";
+import {state} from "../data/store.js";
 const listeMovies = document.querySelector(".listeMovies");
+const nomSerie = document.getElementById("nomSerie");
+const genreSerie = document.getElementById("genreSerie");
+const descSerie = document.getElementById("descSerie");
+const langueSerie = document.getElementById("langueSerie");
+
 
 
 
 export function cards (element){
+    
         const article = document.createElement("article");
         listeMovies.append(article);
 
@@ -13,7 +21,7 @@ export function cards (element){
         const img = document.createElement("img");
         article.append(img);
         img.classList.add("w-full","rounded-t-2xl","max-h-80");
-        // img.setAttribute("src", element.image == undefined ? "./assets/image.png" : element.image.original)
+        img.setAttribute("src", element.image == undefined ? "./assets/image.png" : element.image.original)
         img.setAttribute("alt", `photo du film ${element.name}`);
 
         const div = document.createElement("div");
@@ -39,7 +47,7 @@ export function cards (element){
         const p = document.createElement("p");
         div.append(p);
         p.classList.add("text-[#BABABA]","mb-3");
-        p.innerHTML = `${element.summary.slice(0,150)} ...`;
+        p.innerHTML = `${element.summary.slice(0,120)} ...`;
 
         const btns = document.createElement("div");
         div.append(btns);
@@ -51,17 +59,30 @@ export function cards (element){
         detail.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-xl","flex" , "justify-center");
         detail.setAttribute("href",`./detail.html?id=`+element.id); 
 
-        const supprimer = document.createElement("button");
-        btns.append(supprimer);
-        supprimer.textContent = "supprimer";
-        supprimer.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-xl","flex" , "justify-center");
+        const supprimerBtn = document.createElement("button");
+        btns.append(supprimerBtn);
+        supprimerBtn.textContent = "supprimer";
+        supprimerBtn.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-xl","flex" , "justify-center");
 
         const modifier = document.createElement("button");
         btns.append(modifier);
         modifier.textContent = "modifier";
         modifier.classList.add("bg-[#ffff]","text-black","py-1","px-2","rounded-xl","flex" , "justify-center");
-        supprimer.addEventListener("click",()=>{
+
+
+        supprimerBtn.addEventListener("click",()=>{
+            const confirmation = confirm("etes vous sure de supprimer ce film");
+            if(!confirmation){
+                return
+            }
             remove(element.id);
+            article.remove();
+        })
+
+
+        modifier.addEventListener("click",()=>{
+            state.editId = element.id;
+            édition(state.editId);
         })
 }
 
