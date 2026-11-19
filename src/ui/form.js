@@ -1,3 +1,5 @@
+import { getById } from "../services/serieService.js";
+
 const listeMovies = document.querySelector(".listeMovies");
 const nomSerie = document.getElementById("nomSerie");
 const genreSerie = document.getElementById("genreSerie");
@@ -47,11 +49,12 @@ export function createObjetMovie(){
     return newMovie; 
 }
 
-export function édition(movie){
-    nomSerie.value = movie.name;
-    genreSerie.value = movie.genres;
-    langueSerie.value = movie.language;
-    descSerie.value = movie.summary;
+export async function édition(id){
+    const serie = await getById(id);
+    nomSerie.value = serie.name;
+    genreSerie.value = serie.genres;
+    langueSerie.value = serie.language;
+    descSerie.value = serie.summary;    
 
     submit.classList.toggle("hidden");
     annulerModif.classList.toggle("hidden");

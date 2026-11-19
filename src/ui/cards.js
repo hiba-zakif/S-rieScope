@@ -1,5 +1,6 @@
 import {update, remove} from "../services/serieService.js";
 import{édition} from "./form.js";
+import {state} from "../data/store.js";
 const listeMovies = document.querySelector(".listeMovies");
 const nomSerie = document.getElementById("nomSerie");
 const genreSerie = document.getElementById("genreSerie");
@@ -10,6 +11,7 @@ const langueSerie = document.getElementById("langueSerie");
 
 
 export function cards (element){
+    
         const article = document.createElement("article");
         listeMovies.append(article);
 
@@ -45,7 +47,7 @@ export function cards (element){
         const p = document.createElement("p");
         div.append(p);
         p.classList.add("text-[#BABABA]","mb-3");
-        p.innerHTML = `${element.summary.slice(0,150)} ...`;
+        p.innerHTML = `${element.summary.slice(0,120)} ...`;
 
         const btns = document.createElement("div");
         div.append(btns);
@@ -79,7 +81,8 @@ export function cards (element){
 
 
         modifier.addEventListener("click",()=>{
-            édition(element);
+            state.editId = element.id;
+            édition(state.editId);
         })
 }
 

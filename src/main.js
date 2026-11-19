@@ -1,6 +1,7 @@
 import {update, getAll , create , getById} from "./services/serieService.js";
 import {cards} from "./ui/cards.js";
 import {createObjetMovie } from "./ui/form.js";
+import {state} from "./data/store.js";
 
 
 const listeMovies = document.querySelector(".listeMovies");
@@ -20,17 +21,22 @@ const modif = document.getElementById("Modif");
 
 
 
-async function displayMovies(){
-    const movies =  await getAll();
-    // console.log(movies);
+async function loadSeries(){
+    const series =  await getAll();
     listeMovies.textContent = "";
     
-    movies.forEach(element => {
+    series.forEach(element => {
         cards(element,listeMovies);
-    });
-    
+    });  
 }
-displayMovies();
+loadSeries();
+
+function displaySeries(){  
+    listeMovies.textContent = "";
+    state.movies.forEach(element => {
+        cards(element);
+    });
+}
 
 submit.addEventListener("submit", (e)=>{
         e.preventDefault();
@@ -58,9 +64,31 @@ annulerModif.addEventListener("click",(e)=>{
 modif.addEventListener("click",(e)=>{
     e.preventDefault();
     const updatedMovie = createObjetMovie();
-        if(!updatedMovie){
-            console.log("undefined");
-            return
+    update(state.editId, updatedMovie);
+    console.log(updatedMovie);
+
+    for(let serie of state.movies){
+        if(serie.id == state.editId){
+            console.log(serie);
+            for(let [key , value] of Object.entries(serie)){
+                for(let [clé , valeur] of Object.entries(updatedMovie)){
+                    if(key == clé){
+                        serie[key] = valeur;
+                        console.log(serie);
+                    }
+                }
+            }
         }
-    update(updatedMovie);
+    }
+    
+
+    ajouterMovie.reset();
+    state.editId = null;
+    displaySeries();
+    submit.classList.toggle("hidden");
+    annulerModif.classList.toggle("hidden");
+    modif.classList.toggle("hidden");
+
+
+    
 })
